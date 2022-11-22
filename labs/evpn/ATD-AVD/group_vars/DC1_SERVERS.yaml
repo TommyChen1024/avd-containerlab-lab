@@ -1,0 +1,34 @@
+---
+port_profiles:
+  Trunl1:
+    mode: trunk
+    vlans: "100,200"
+  Access_200:
+    mode: access
+    vlans: "200"
+
+servers:
+  Host1:
+    rack: rack01
+    adapters:
+      - type: nic
+        endpoint_ports: [Eth1, Eth2, Eth3, Eth4]
+        switch_ports: [Ethernet4, Ethernet5, Ethernet4, Ethernet5]
+        switches: [DC1_LEAF1, DC1_LEAF1, DC1_LEAF2 ,DC1_LEAF2]
+        profile: Trunl1
+        port_channel:
+          state: present
+          description: PortChannel4
+          mode: active
+  Host02:
+    rack: rack01
+    adapters:
+      - type: nic
+        endpoint_ports: [Eth1, Eth2, Eth3, Eth4]
+        switch_ports: [Ethernet4, Ethernet5, Ethernet4, Ethernet5]
+        switches: [DC1_LEAF3, DC1_LEAF3, DC1_LEAF4, DC1_LEAF4]
+        profile: Access_200
+        port_channel:
+          state: present
+          description: PortChannel4
+          mode: active

@@ -1,0 +1,88 @@
+name: avdirb
+
+topology:
+  kinds:
+    ceos:
+      startup-config: ../../../ceos_lab_template/ceos.cfg.tpl
+      image: ceosimage:4.28.1F
+    linux:
+      image: alpine-host
+  nodes:
+    spine1:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.2
+    spine2:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.3
+    leaf1a:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.4
+    leaf1b:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.5
+    svc2a:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.6
+    svc2b:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.7
+    l2leaf2a:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.8
+    l2leaf2b:
+      kind: ceos
+      mgmt_ipv4: 192.168.0.9
+    client1:
+      kind: linux
+      mgmt_ipv4: 192.168.0.10
+      env:
+        TMODE: lacp
+    client2:
+      kind: linux
+      mgmt_ipv4: 192.168.0.11
+      env:
+        TMODE: lacp
+    client3:
+      kind: linux
+      mgmt_ipv4: 192.168.0.12
+      env:
+        TMODE: lacp
+    client4:
+      kind: linux
+      mgmt_ipv4: 192.168.0.13
+      env:
+        TMODE: lacp
+
+  links:
+    - endpoints: ["leaf1a:eth1", "spine1:eth1"]
+    - endpoints: ["leaf1b:eth1", "spine1:eth2"]
+    - endpoints: ["svc2a:eth1", "spine1:eth3"]
+    - endpoints: ["svc2b:eth1", "spine1:eth4"]
+    - endpoints: ["leaf1a:eth2", "spine2:eth1"]
+    - endpoints: ["leaf1b:eth2", "spine2:eth2"]
+    - endpoints: ["svc2a:eth2", "spine2:eth3"]
+    - endpoints: ["svc2b:eth2", "spine2:eth4"]
+    - endpoints: ["leaf1a:eth3", "leaf1b:eth3"]
+    - endpoints: ["leaf1a:eth4", "leaf1b:eth4"]
+    - endpoints: ["svc2a:eth3", "svc2b:eth3"]
+    - endpoints: ["svc2a:eth4", "svc2b:eth4"]
+    - endpoints: ["svc2a:eth5", "l2leaf2a:eth1"]
+    - endpoints: ["svc2a:eth6", "l2leaf2b:eth1"]
+    - endpoints: ["svc2b:eth5", "l2leaf2a:eth2"]
+    - endpoints: ["svc2b:eth6", "l2leaf2b:eth2"]
+    - endpoints: ["l2leaf2a:eth3", "l2leaf2b:eth3"]
+    - endpoints: ["l2leaf2a:eth4", "l2leaf2b:eth4"]
+    - endpoints: ["leaf1a:eth5", "client1:eth1"]
+    - endpoints: ["leaf1b:eth5", "client1:eth2"]
+    - endpoints: ["leaf1a:eth6", "client2:eth1"]
+    - endpoints: ["leaf1b:eth6", "client2:eth2"]
+    - endpoints: ["l2leaf2a:eth5", "client3:eth1"]
+    - endpoints: ["l2leaf2b:eth5", "client3:eth2"]
+    - endpoints: ["l2leaf2a:eth6", "client4:eth1"]
+    - endpoints: ["l2leaf2b:eth6", "client4:eth2"]
+
+mgmt:
+  network: ceos_clab
+  ipv4_subnet: 192.168.0.0/24
+
+

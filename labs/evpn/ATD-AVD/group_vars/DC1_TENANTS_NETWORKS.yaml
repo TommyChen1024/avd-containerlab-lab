@@ -1,0 +1,54 @@
+---
+svi_profiles:
+  GENERIC:
+    mtu: 1560
+    enabled: true
+  GENERIC_FULL:
+    name: GENERIC Name
+    mtu: 1560
+    enabled: false
+    ip_address_virtual: 10.1.10.254/24
+  WITH_NO_MTU:
+    enabled: true
+  WITH_SNOOPING:
+    enabled: true
+    igmp_snooping_enabled: false
+
+tenants:
+  # Tenant A VRFs / VLANs
+  Tenant_A:
+    mac_vrf_vni_base: 10000
+    vrfs:
+      RED:
+        vrf_vni: 20
+        vtep_diagnostic:
+          loopback: 200
+          loopback_ip_range: 192.168.200.0/24
+        svis:
+          100:
+            name: Tenant_A_OP_Zone_1
+            tags: [ opzone_pod1 ]
+            enabled: true
+            ip_address_virtual: 10.100.100.1/24
+          200:
+            name: Tenant_A_OP_Zone_2
+            tags: [ opzone_pod1,opzone_pod2 ]
+            enabled: true
+            ip_address_virtual: 10.200.200.1/24
+  # Tenant_B:
+  #   mac_vrf_vni_base: 20000
+  #   vrfs:
+  #     Tenant_B_OP_Zone:
+  #       vrf_vni: 20
+  #       svis:
+  #         210:
+  #           name: Tenant_B_OP_Zone_1
+  #           tags: ['opzone']
+  #           profile: WITH_NO_MTU
+  #           ip_address_virtual: 10.2.10.1/24
+  #         211:
+  #           name: Tenant_B_OP_Zone_2
+  #           tags: ['opzone']
+  #           profile: GENERIC_FULL
+  #           ip_address_virtual: 10.2.11.1/24
+

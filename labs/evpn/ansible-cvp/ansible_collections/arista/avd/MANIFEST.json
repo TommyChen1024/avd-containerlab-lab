@@ -1,0 +1,40 @@
+{
+ "collection_info": {
+  "namespace": "arista",
+  "name": "avd",
+  "version": "3.3.0",
+  "authors": [
+   "Arista Ansible Team <ansible@arista.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "arista",
+   "network",
+   "networking",
+   "eos",
+   "avd",
+   "cloudvision",
+   "cvp"
+  ],
+  "description": "Ansible Roles & Modules to support Arista Validated Designs and Deployment Guides",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {
+   "arista.cvp": ">=3.2.0",
+   "arista.eos": ">=3.1.0",
+   "ansible.netcommon": ">=2.4.0"
+  },
+  "repository": "https://github.com/aristanetworks/ansible-avd",
+  "documentation": "https://www.avd.sh/",
+  "homepage": "https://www.avd.sh/",
+  "issues": "https://github.com/aristanetworks/ansible-avd/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "0956cd25aaa43960e6d9fb46c8d17f46a762ac363c434a0bcdbab3e66177a9c3",
+  "format": 1
+ },
+ "format": 1
+}

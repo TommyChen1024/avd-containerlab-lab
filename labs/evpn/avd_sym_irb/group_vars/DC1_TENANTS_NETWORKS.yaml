@@ -1,0 +1,29 @@
+---
+tenants:
+  # Tenant A VRFs / VLANs
+  Tenant_A:
+    mac_vrf_vni_base: 10000
+    vrfs:
+      Tenant_A_OP_Zone:
+        vrf_vni: 10
+        vtep_diagnostic:
+          loopback: 100
+          loopback_ip_range: 192.168.100.0/24
+        svis:
+          100:
+            name: Tenant_A_OP_Zone_1
+            tags: [ opzone_pod1 ]
+            enabled: true
+            ip_address_virtual: 10.100.100.1/24
+          150:
+            name: Tenant_A_OP_Zone_2
+            tags: [ opzone_pod2 ]
+            enabled: true
+            ip_address_virtual: 10.100.150.1/24
+          200:
+            name: Tenant_A_OP_Zone_3
+            tags: [ opzone_pod1,opzone_pod2 ]
+            enabled: true
+            ip_address_virtual: 10.200.200.1/24
+
+
